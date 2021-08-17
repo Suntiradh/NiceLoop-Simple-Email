@@ -26,9 +26,9 @@ export default createStore({
         let res = await firebase
           .auth()
           .signInWithEmailAndPassword(payload.email, payload.password);
-        await alert("Login Complete");
-        await commit("setUser", res);
-        await router.push("/");
+        alert("Login Complete");
+        commit("setUser", res);
+        router.push("/");
       } catch (error) {
         alert(error.message);
       }
@@ -37,12 +37,12 @@ export default createStore({
       commit("setUser", payload);
     },
     async userSignOut({ commit }) {
-      firebase.auth().signOut();
-      await alert("Logout Complete");
-      commit("setUser", null);
+      await firebase.auth().signOut();
+      alert("Logout Complete");
+      commit("setData", null);
     },
     async sentEmail(_, payload) {
-      db.collection("mailsAuth").add({
+      await db.collection("mailsAuth").add({
         emailTo: payload.emailTo,
         emailFrom: firebase.auth().currentUser.email,
         subject: payload.subject,
@@ -51,11 +51,11 @@ export default createStore({
         faverite: true,
         read: false,
       });
-      await alert("sent email");
+      alert("sent email");
     },
     async deleteEmail(_, payload) {
-      db.collection("mailsAuth").doc(payload.id).delete();
-      await alert("Deleted");
+      await db.collection("mailsAuth").doc(payload.id).delete();
+      alert("Deleted");
     },
     async getData({commit}) {
       var memberRef = await db.collection("mailsAuth");

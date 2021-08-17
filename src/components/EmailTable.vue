@@ -1,5 +1,5 @@
 <template>
-  <div v-if="this.$store.state.user !== null">
+  <div v-if="this.$store.state.data !== null">
     <button @click="selectMenu = 'inbox'" :disabled="selectMenu == 'inbox'">
       Inbox
     </button>
