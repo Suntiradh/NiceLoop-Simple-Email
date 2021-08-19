@@ -1,27 +1,19 @@
 <template>
-  <div id="home">
-    <h2>Home</h2>
-    <h3>Welcome to Simple Email</h3>
-
-    <Suspense>
-      <template #default>
-        <EmailTable />
-      </template>
-      <template #fallback> Loading... </template>
-    </Suspense>
+  <div id="home" class="my-4">
+    <h3 class="font-medium my-4">Welcome to Simple Email</h3>
+    <EmailTable />
   </div>
 </template>
 
 <script>
-import EmailTable from "../components/EmailTable.vue"
+import EmailTable from "../components/EmailTable.vue";
 
 export default {
   name: "Home",
   components: {
-      EmailTable,
-  }
+    EmailTable,
+  },
 };
 </script>
 
-<style>
-</style>
+<style></style>

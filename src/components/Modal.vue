@@ -8,14 +8,13 @@
 </template>
 
 <script>
-  export default {
-    setup(_, {emit}) {
-      return {
-        emit
-      }
-    }
-  }
+export default {
+  setup(_, { emit }) {
+    return {
+      emit,
+    };
+  },
+};
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>

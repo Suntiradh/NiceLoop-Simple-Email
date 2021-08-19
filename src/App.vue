@@ -4,9 +4,19 @@
       <strong>logged in</strong>
     </div>
     <router-link to="/">Home</router-link> |
-    <router-link to="/login">Login</router-link> |
+    <span v-if="!this.$store.state.user">
+      <router-link to="/login">Login</router-link>
+    </span>
+    <span v-if="this.$store.state.user">
     <router-link to="/compose">Compose</router-link> |
-    <button @click="userLogOut">Logout</button>
+    </span>
+    <button
+      v-if="this.$store.state.user !== null"
+      class="border border-gray-900 bg-red-200 hover:bg-red-400 p-1"
+      @click="userLogOut"
+    >
+      Logout
+    </button>
     <router-view />
   </div>
 </template>
@@ -23,133 +33,78 @@ export default {
 };
 </script>
 <style>
+body {
+  @apply bg-gradient-to-r from-green-100 to-blue-200;
+}
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+  @apply font-serif text-center antialiased grayscale;
 }
 #nav {
-  padding: 30px;
+  @apply p-10;
 }
 #nav a {
-  font-weight: bold;
-  color: #2c3e50;
+  @apply font-extrabold  text-gray-600;
 }
 #nav a.router-link-exact-active {
-  color: #42b983;
+  @apply font-extrabold text-red-300;
 }
 /* Global Styles */
 button {
-  font-size: 16px;
-  padding: 8px;
-  border-radius: 3px;
-  margin: 5px 10px 5px 0px;
-  cursor: pointer;
+  @apply text-base p-2 border rounded-xl m-2 cursor-pointer;
 }
 button:disabled {
-  cursor: auto;
-}
-button.selected {
-  cursor: auto;
-  color: black;
-  border-color: black;
-  border-width: 2px;
+  @apply cursor-auto;
 }
 .clickable {
-  cursor: pointer;
+  @apply cursor-pointer;
 }
 input[type="checkbox"] {
-  -webkit-appearance: none;
-  cursor: pointer;
-  width: 24px;
-  height: 24px;
-  background: white;
-  border-radius: 2px;
-  border: 1px solid #555;
-  position: relative;
-  vertical-align: middle;
-  padding: 10px;
+  @apply appearance-none cursor-pointer w-4 h-4 bg-white border rounded-sm border-solid relative align-middle p-2;
 }
 input[type="checkbox"].partial-check {
-  background: #abc;
+  @apply bg-gray-600;
 }
 input[type="checkbox"]:checked {
-  background: #679;
-}
-.mb-0 {
-  margin-bottom: 0;
+  @apply bg-red-400;
 }
 /* Modal */
 .modal,
 .overlay {
-  width: 100%;
-  height: 100%;
-  position: fixed;
-  left: 0;
-  top: 0;
+  @apply w-full h-full fixed left-0 top-0;
 }
 .overlay {
-  opacity: 0.5;
-  background-color: black;
+  @apply bg-black opacity-40;
 }
 .modal-card {
-  position: relative;
-  max-width: 80%;
-  margin: auto;
-  margin-top: 30px;
-  padding: 20px;
-  background-color: white;
-  min-height: 500px;
-  z-index: 10;
-  opacity: 1;
+  @apply relative max-w-3xl m-auto mt-6 p-6 bg-white min-h-screen z-10 opacity-100;
 }
 /* Email Modal */
 .email-display {
-  text-align: left;
+  @apply text-left;
 }
 /* Mail Table */
 .mail-table {
-  max-width: 1000px;
-  margin: auto;
-  border-collapse: collapse;
+  @apply max-w-3xl m-auto border border-collapse;
 }
 .mail-table tr.read {
-  background-color: #eee;
+  @apply bg-gray-400;
+}
+.mail-table tr.unread {
+  @apply bg-white;
 }
 .mail-table tr {
-  height: 40px;
+  @apply h-20;
 }
 .mail-table td {
-  border-bottom: 1px solid black;
-  padding: 5px;
-  text-align: left;
+  @apply border-b-2 border-black p-2 text-left;
 }
 .mail-table tr:first-of-type td {
-  border-top: 1px solid black;
+  @apply border-t-2 border-black;
 }
 .mail-table td p {
-  max-height: 1.2em;
-  overflow-y: hidden;
-  margin: 0;
+  @apply max-h-8 overflow-y-hidden m-auto;
 }
 .mail-table td.date {
-  width: 120px;
-}
-/* Bulk Action Bar */
-.bulk-action-bar {
-  width: 100%;
-  max-width: 1000px;
-  margin: auto;
-  text-align: left;
-  padding-bottom: 8px;
-}
-.bulk-action-bar input {
-  margin: 5px;
-}
-.bulk-action-bar .checkbox {
-  margin-right: 6px;
-  margin-left: 3px;
+  @apply w-40;
 }
 </style>

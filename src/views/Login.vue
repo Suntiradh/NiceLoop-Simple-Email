@@ -1,10 +1,46 @@
 <template>
-  <div id="login">
-    <form @submit.prevent="login">
-      <h2>Login</h2>
-      <input type="email" placeholder="Email address..." v-model="email" />
-      <input type="password" placeholder="password..." v-model="password" />
-      <button type="submit">Login</button>
+  <div id="login" class="w-1/2 m-auto">
+    <form class="lg:p-10 md:p-6 sm:p-2 text-left" @submit.prevent="login">
+      <div class="my-4">
+        <label class="font-medium"> Email: </label>
+        <input
+          class="
+            border border-black
+            hover:bg-gray-100 hover:bg-opacity-30
+            w-full
+            rounded-md
+            block
+            p-1
+          "
+          type="email"
+          placeholder="Email address..."
+          v-model="email"
+        />
+      </div>
+      <div class="my-2">
+        <label class="font-medium"> Password: </label>
+        <input
+          class="
+            border border-black
+            hover:bg-gray-100 hover:bg-opacity-30
+            w-full
+            rounded-md
+            block
+            p-1
+          "
+          type="password"
+          placeholder="Password..."
+          v-model="password"
+        />
+      </div>
+      <div class="w-full flex justify-end">
+        <button
+          class="border border-gray-900 bg-green-200 hover:bg-green-400 p-1"
+          type="submit"
+        >
+          Login
+        </button>
+      </div>
     </form>
   </div>
 </template>
@@ -29,5 +65,4 @@ export default {
 };
 </script>
 
-<style>
-</style>
+<style></style>

@@ -40,6 +40,7 @@ export default createStore({
       await firebase.auth().signOut();
       alert("Logout Complete");
       commit("setData", null);
+      location.reload()
     },
     async sentEmail(_, payload) {
       await db.collection("mailsAuth").add({
@@ -57,7 +58,7 @@ export default createStore({
       await db.collection("mailsAuth").doc(payload.id).delete();
       alert("Deleted");
     },
-    async getData({commit}) {
+    async getData({ commit }) {
       var memberRef = await db.collection("mailsAuth");
       memberRef.onSnapshot((snapshotChange) => {
         let data = [];
@@ -72,11 +73,11 @@ export default createStore({
               body: doc.data().body,
               sentAt: dateFormat,
               read: doc.data().read,
-              faverite: doc.data().faverite 
+              faverite: doc.data().faverite,
             });
           }
         });
-        commit("setData", data)
+        commit("setData", data);
       });
     },
   },
